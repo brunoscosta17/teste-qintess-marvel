@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CharactersService } from '../shared/characters.service';
 
@@ -11,7 +12,10 @@ export class CharacterListComponent implements OnInit {
 
   characters: any;
 
-    constructor(private charactersService: CharactersService) {}
+    constructor(
+      private charactersService: CharactersService,
+      private router: Router
+      ) {}
 
     ngOnInit(): void {
         this.getCharacters();
@@ -19,6 +23,10 @@ export class CharacterListComponent implements OnInit {
 
     getCharacters() {
       this.charactersService.getAllCharacters().subscribe(data => this.characters = data.data.results); 
+    }
+
+    characterDetails(id: any) {
+      this.router.navigate([`characters/details/${id}`])
     }
 
 }

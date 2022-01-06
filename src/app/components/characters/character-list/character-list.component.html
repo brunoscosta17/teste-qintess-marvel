@@ -1,14 +1,10 @@
 <div class="container justify-content-center">
     <div class="row mt-4 justify-content-center">
-        <div class="col-lg-4 py-4 justify-content-center" *ngFor="let item of characters">
+        <div class="col-lg-4 py-4 justify-content-center" *ngFor="let item of characters" (click)="characterDetails(item.id)">
             <div class="card" style="width: 18rem;">
-                <img src="{{item.thumbnail.path}}.jpg" class="card-img-top" alt="..." style="width: 18rem; height: 18rem;">
+                <img src="{{item.thumbnail.path}}.jpg" class="card-img-top" [alt]="item.name" style="width: 18rem; height: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{ item.name }}</h5>
                 </div>
             </div>
         </div>
