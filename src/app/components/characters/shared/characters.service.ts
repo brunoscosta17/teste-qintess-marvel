@@ -16,12 +16,20 @@ export class CharactersService {
   PRIVATE_KEY = 'fbf255068eccea6d0ef951b9f25626b57ab2fe72';
   TIME = Number(new Date);
   HASH = Md5.hashStr(this.TIME + this.PRIVATE_KEY + this.PUBLIC_KEY);
-  URL_API = `https:gateway.marvel.com/v1/public/characters?ts=${this.TIME}&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}`;
+  URL_API = `https:gateway.marvel.com/v1/public/characters`;
 
   constructor(private http: HttpClient) { }
 
   getAllCharacters(): Observable<any> {
-    return this.http.get<any>(this.URL_API);
+    return this.http.get<any>(`${this.URL_API}?ts=${this.TIME}&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}`);
+  }
+
+  getCharatersDetails(id: number): Observable<any> {
+    return this.http.get<any>(`${this.URL_API}/${id}?ts=${this.TIME}&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}`);
+  }
+
+  getListComicsCharacter(url: string): Observable<any> {
+    return this.http.get<any>(`${url}?ts=${this.TIME}&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}`);
   }
     
 }
