@@ -2,6 +2,11 @@
     cursor: pointer;
 }
 
+img {
+    width: 450px;
+    height: 500px;
+}
+
 .card-text {
     font-size: 0.8rem;
 }
